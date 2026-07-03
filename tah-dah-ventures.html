@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAH-DAH Ventures — Backing the founders reshaping how the world eats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101210;
+  --paper:#F7F6F1;
+  --leaf:#4E7C33;
+  --leaf-bright:#6BA544;
+  --muted:#7C7F76;
+  --hairline:rgba(16,18,16,.14);
+  --max:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:'Archivo',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px clamp(20px,4vw,56px);
+  mix-blend-mode:difference;color:#fff;
+}
+nav .logo{font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+nav .links{display:flex;gap:28px}
+nav .links a{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+nav .links a:hover{opacity:1}
+@media(max-width:640px){nav .links{gap:16px}nav .links a:nth-child(3){display:none}}
+
+/* ---------- HERO (video) ---------- */
+.hero{
+  position:relative;height:100svh;min-height:560px;
+  background:var(--ink);color:#fff;overflow:hidden;
+  display:flex;align-items:flex-end;
+}
+.hero video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+}
+/* Animated placeholder shown until the client video is dropped in */
+.hero .placeholder{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 15% 10%, rgba(107,165,68,.55), transparent 55%),
+    radial-gradient(90% 90% at 85% 90%, rgba(78,124,51,.4), transparent 60%),
+    linear-gradient(160deg,#0C0E0B 0%,#161A14 55%,#0C0E0B 100%);
+  background-size:200% 200%;
+  animation:drift 16s ease-in-out infinite alternate;
+}
+@keyframes drift{from{background-position:0% 0%}to{background-position:100% 100%}}
+.hero .placeholder-tag{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  border:1px dashed rgba(255,255,255,.35);border-radius:100px;
+  padding:10px 22px;color:rgba(255,255,255,.65);
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,9,.72) 0%,rgba(10,12,9,0) 45%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(36px,6vh,72px)}
+.hero h1{
+  font-weight:800;letter-spacing:-.035em;line-height:.98;
+  font-size:clamp(2.6rem,7.2vw,6.4rem);
+  max-width:16ch;
+}
+.hero h1 em{font-style:normal;color:var(--leaf-bright)}
+.hero .sub{margin-top:22px;display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.75)}
+.hero .sub .rule{width:44px;height:1px;background:var(--leaf-bright)}
+
+/* ---------- ABOUT ---------- */
+.about{padding:clamp(80px,12vh,150px) 0;border-bottom:1px solid var(--hairline)}
+.eyebrow{color:var(--leaf);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:"";flex:0 0 40px;height:1px;background:var(--leaf)}
+.about p.statement{
+  font-size:clamp(1.5rem,3.4vw,2.7rem);
+  font-weight:500;letter-spacing:-.02em;line-height:1.24;
+  max-width:24ch;
+}
+.about p.statement strong{font-weight:800}
+.about .detail{
+  margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:840px;
+}
+.about .detail p{color:#3C3F38;font-size:1rem;line-height:1.65}
+@media(max-width:760px){.about .detail{grid-template-columns:1fr}}
+
+/* ---------- PORTFOLIO ---------- */
+.portfolio{padding:clamp(80px,12vh,150px) 0 0}
+.grid{
+  margin-top:8px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--hairline);border-left:1px solid var(--hairline);
+}
+.cell{
+  position:relative;aspect-ratio:4/3;
+  border-right:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px;overflow:hidden;cursor:pointer;
+  transition:color .25s ease;
+}
+.cell::before{
+  content:"";position:absolute;inset:0;background:var(--ink);
+  transform:translateY(101%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.cell:hover::before{transform:translateY(0)}
+.cell:hover{color:var(--paper)}
+.cell .name{position:relative;font-weight:700;font-size:clamp(.95rem,1.4vw,1.2rem);letter-spacing:-.01em;line-height:1.2}
+.cell .idx{position:absolute;top:18px;left:22px;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);transition:color .25s}
+.cell:hover .idx{color:var(--leaf-bright)}
+/* Logo tiles: add class "has-logo" to the cell and an <img> inside it */
+.cell.has-logo{justify-content:center;align-items:center}
+.cell.has-logo .name{display:none}
+.cell img{
+  position:relative;max-width:65%;max-height:45%;object-fit:contain;
+  filter:grayscale(1);opacity:.85;transition:filter .25s,opacity .25s;
+}
+.cell:hover img{filter:grayscale(1) invert(1);opacity:1}
+@media(max-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}.cell{aspect-ratio:1/1;padding:16px}}
+.grid-note{padding:20px 0 0;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* ---------- TEAM ---------- */
+.team{padding:clamp(80px,12vh,150px) 0;border-top:1px solid var(--hairline);margin-top:clamp(60px,9vh,110px)}
+.team-row{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+@media(max-width:820px){.team-row{grid-template-columns:1fr}}
+.headshot{
+  aspect-ratio:3/4;background:linear-gradient(160deg,#E5E3DA,#D2D0C5);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--hairline);
+}
+.headshot span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.team h3{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.02em}
+.team .role{color:var(--leaf);margin:8px 0 26px}
+.team p{color:#3C3F38;max-width:58ch;line-height:1.7}
+.team p + p{margin-top:18px}
+
+/* ---------- CONTACT ---------- */
+.contact{
+  background:var(--ink);color:var(--paper);
+  padding:clamp(90px,14vh,170px) 0 60px;
+}
+.contact h2{
+  font-size:clamp(2.4rem,6.5vw,5.4rem);font-weight:800;letter-spacing:-.03em;line-height:1;
+}
+.contact h2 a{color:var(--leaf-bright);position:relative}
+.contact h2 a::after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:2px;background:var(--leaf-bright);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.contact h2 a:hover::after{transform:scaleX(1)}
+.contact .lead{margin-top:26px;color:rgba(247,246,241,.65);max-width:44ch;font-size:1.05rem}
+.footer{
+  margin-top:clamp(60px,10vh,120px);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  border-top:1px solid rgba(247,246,241,.15);padding-top:24px;
+  color:rgba(247,246,241,.5);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#top">TAH-DAH</a>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Pitch Us</a>
+  </div>
+</nav>
+
+<!-- ================= HERO / VIDEO ================= -->
+<header class="hero" id="top">
+  <!-- CLIENT VIDEO: replace placeholder by uncommenting and setting src -->
+  <!-- <video autoplay muted loop playsinline poster="hero-poster.jpg" src="hero.mp4"></video> -->
+  <div class="placeholder"></div>
+  <div class="placeholder-tag">Client hero video drops in here</div>
+  <div class="scrim"></div>
+  <div class="hero-inner wrap">
+    <h1>Backing the founders reshaping <em>how the world eats.</em></h1>
+    <div class="sub">
+      <span class="rule"></span>
+      <span class="mono">Early-Stage Venture Capital · Wyoming, USA</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="eyebrow mono">About the Firm</div>
+    <p class="statement">TAH-DAH Ventures partners with early-stage entrepreneurs to build <strong>category-defining companies.</strong></p>
+    <div class="detail">
+      <p>We invest at the intersection of health, sustainability, and function — backing food &amp; beverage brands and disruptive ag-tech companies transforming the global food system.</p>
+      <p>Our portfolio spans food technology, beverage brands, restaurant technology, and food-delivery platforms across the United States and beyond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLIO ================= -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="eyebrow mono">Portfolio · 11 Companies</div>
+    <div class="grid">
+      <!-- TO ADD A LOGO: add class "has-logo" to the cell, drop an <img> in, set href to the company site. Example:
+      <a class="cell has-logo" href="https://californiaperformance.co" target="_blank"><span class="idx">01</span><span class="name">California Performance Co.</span><img src="logos/california-performance.png" alt="California Performance Co."></a>
+      -->
+      <a class="cell" href="#"><span class="idx">01</span><span class="name">California Performance Co.</span></a>
+      <a class="cell" href="#"><span class="idx">02</span><span class="name">Boumarang Inc.</span></a>
+      <a class="cell" href="#"><span class="idx">03</span><span class="name">BluWave Inc.</span></a>
+      <a class="cell" href="#"><span class="idx">04</span><span class="name">GammaRey</span></a>
+      <a class="cell" href="#"><span class="idx">05</span><span class="name">Superlatus</span></a>
+      <a class="cell" href="#"><span class="idx">06</span><span class="name">Blue Gold</span></a>
+      <a class="cell" href="#"><span class="idx">07</span><span class="name">Coolhaus</span></a>
+      <a class="cell" href="#"><span class="idx">08</span><span class="name">Spero Foods</span></a>
+      <a class="cell" href="#"><span class="idx">09</span><span class="name">Eat Modern</span></a>
+      <a class="cell" href="#"><span class="idx">10</span><span class="name">Carbon Zero Asset Management</span></a>
+      <a class="cell" href="#"><span class="idx">11</span><span class="name">Freedom Holdings, Inc.</span></a>
+    </div>
+    <p class="grid-note">Logos to replace typographic tiles once supplied · each tile links to company site</p>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team" id="team">
+  <div class="wrap team-row">
+    <div class="headshot"><span>Headshot — to supply</span></div>
+    <div>
+      <div class="eyebrow mono">Leadership</div>
+      <h3>Yessi Hernandez</h3>
+      <div class="role mono">Co-Founder &amp; General Partner</div>
+      <p>Yessi entered venture capital after a career as a marketing executive, bringing more than a decade of experience in FMCG brand management, marketing, and product development, with leadership roles across the United States and South America. Her work centers on building transformational, sustainable food systems.</p>
+      <p>She is also the founder of MaterAqua, a non-profit organization working with businesses and communities to move beyond throwaway plastic culture — replacing single-use plastic bottles with reusable alternatives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow mono" style="color:var(--leaf-bright)">Pitch Us</div>
+    <h2>Building something category-defining?<br><a href="mailto:info@tahdah.ventures">info@tahdah.ventures</a></h2>
+    <p class="lead">If you're an early-stage founder in food, beverage, or ag-tech, we'd like to hear from you.</p>
+    <div class="footer">
+      <span class="mono">© 2026 TAH-DAH Ventures LLC · Wyoming, USA</span>
+      <span class="mono">Email TBC — placeholder domain</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
